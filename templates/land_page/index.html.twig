@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LandPageController!{% endblock %}
+{% block navig %}
+    <a class="nav-link" href="{{ path('app_login') }}">Login
+        <span class="visually-hidden">(current)</span>
+    </a>
+{% endblock %} 
+{% block body %}
+<div class="row" style="justify-content: center;">
+{% for poste in postes %}
+
+    <div class="card col-md-4" style="min-width: 320px;max-width:330px; margin: 5px;padding:5px;">
+        <img src="{{ poste.image }}" class="card-img-top" alt="{{ poste.title }}">
+        
+        <div class="card-body">
+        <p>Ecrit le : {{ poste.createdAt | date("d/m/Y") }} à {{ poste.createdAt | date("H:i") }}</p>
+            <h5 class="card-title">{{ poste.title }}</h5>
+            <a href="{{path('poste_page',{'id':poste.id})}}" class="btn btn-primary">show article</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

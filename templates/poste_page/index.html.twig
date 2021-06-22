@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{poste.title}}{% endblock %}
+{% block navig %}
+    <a class="nav-link" href="{{ path('app_login') }}">Login
+        <span class="visually-hidden">(current)</span>
+    </a>
+{% endblock %} 
+{% block body %}
+    <div class="container">
+        <img src="{{ poste.image }}" class="img-fluid" alt="{{ poste.title }}" style="width: 100%;margin-top:10px;margin-bottom: 10px;">
+        
+        <div class="content">
+            <p> Ecrit le : {{ poste.createdAt | date("d/m/Y") }} à {{ poste.createdAt | date("H:i") }} par : {{poste.author.lastName}}</p>
+            <h2 class="title">{{ poste.title }}</h5>
+            <p class="text-justify">{{poste.content}}</p>
+        </div>
+    </div>
+{% endblock %}

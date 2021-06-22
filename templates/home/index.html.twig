@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}home{% endblock %}
+{% block navig %}
+    <a class="nav-link" href="{{ path('app_logout') }}">Logout
+        <span class="visually-hidden">(current)</span>
+    </a>
+{% endblock %} 
+{% block body %}
+<div class="example-wrapper">
+     {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+</div>
+<div class="row" style="justify-content: center;">
+{% for poste in postesforuser %}
+
+    <div class="card col-md-4" style="min-width: 320px;max-width:330px; margin: 5px;padding:5px;">
+        <img src="{{ poste.image }}" class="card-img-top" alt="{{ poste.title }}">
+        
+        <div class="card-body">
+        <p>Ecrit le : {{ poste.createdAt | date("d/m/Y") }} à {{ poste.createdAt | date("H:i") }}</p>
+            <h5 class="card-title">{{ poste.title }}</h5>
+            <a href="{{path('poste_page',{'id':poste.id})}}" class="btn btn-primary">show article</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
